@@ -1,19 +1,25 @@
-# Agents of Empires - Next.js (DEPRECATED)
+# ⚠️ DEPRECATED - Incomplete Next.js Migration
 
-⚠️ **This project is deprecated and no longer maintained.**
+**This project is an incomplete alternative Next.js migration attempt and is no longer maintained.**
 
-Please use the Vite-based version at:
-https://github.com/DavinciDreams/agents-of-empires
+Please use the **completed Next.js migration** instead:
+- **Local path**: `../agents-of-empires/`
+- **GitHub**: https://github.com/DavinciDreams/agents-of-empires
 
----
+## Why This Project is Deprecated
 
-## Migration Path
+The `agents-of-empires-nextjs/` directory contains an incomplete attempt to migrate the original Vite-based application to Next.js. This migration was not completed, and a separate, fully functional Next.js migration exists in the `agents-of-empires/` directory.
 
-If you were using this Next.js version, migrate to the Vite version:
+## Where to Go Instead
 
-1. Clone the Vite version: `git clone https://github.com/DavinciDreams/agents-of-empires.git`
-2. Install dependencies: `pnpm install`
-3. Run the development server: `pnpm dev`
+### Completed Next.js Migration (Recommended)
+- **Location**: `agents-of-empires/`
+- **GitHub**: https://github.com/DavinciDreams/agents-of-empires
+- **Status**: ✅ Fully functional and maintained
+
+### Original Vite Version
+- **Location**: `deepagentsjs/apps/agents-of-empire/`
+- **Status**: Original implementation
 
 ---
 
@@ -99,167 +105,76 @@ The application will be available at [http://localhost:3000](http://localhost:30
 
 ### Hot Reload
 
-Next.js provides fast refresh for React components, allowing you to see changes instantly without losing component state.
-
-## Building for Production
-
-### Build the application
-
-```bash
-pnpm build
-```
-
-This will:
-1. Compile TypeScript
-2. Optimize assets
-3. Generate static pages
-4. Create the `.next` build directory
-
-### Test production build locally
-
-```bash
-pnpm start
-```
-
-This starts the production server on port 3000.
-
-## Deployment
-
-### Vercel Deployment
-
-This project is configured for Vercel deployment with [`vercel.json`](vercel.json).
-
-#### Automatic Deployment
-
-1. Connect your GitHub repository to Vercel
-2. Select the `agents-of-empires-nextjs` directory as the root directory
-3. Vercel will automatically detect Next.js and use the configuration in `vercel.json`
-
-#### Manual Deployment
-
-```bash
-vercel --prod
-```
-
-#### Vercel Configuration
-
-The [`vercel.json`](vercel.json) file includes:
-- **Build Command**: Installs dependencies and builds the Next.js app
-- **Output Directory**: `.next` (Next.js default)
-- **Framework**: nextjs
-- **Regions**: Optimized for US East (iad1)
-- **Headers**: Security headers and caching policies
-- **Rewrites**: Proper routing for the game page
-
-### Environment Variables on Vercel
-
-1. Go to your Vercel project settings
-2. Navigate to "Environment Variables"
-3. Add all required variables from your `.env.local` file
-4. Redeploy to apply changes
-
-### Other Deployment Options
-
-This Next.js application can also be deployed to:
-- **Netlify**: Use the Next.js build plugin
-- **AWS**: Deploy to AWS Amplify or EC2
-- **Docker**: Create a Dockerfile for containerized deployment
-- **Node.js servers**: Use `pnpm build && pnpm start`
+Next.js provides fast refresh for React components. Changes to your code will automatically reflect in the browser without a full page reload.
 
 ## Project Structure
 
 ```
 agents-of-empires-nextjs/
-├── app/                    # Next.js app directory
-│   ├── game/              # Game page
-│   ├── globals.css        # Global styles
+├── app/                    # Next.js App Router
 │   ├── layout.tsx         # Root layout
-│   └── page.tsx           # Landing page
+│   ├── page.tsx           # Home page
+│   ├── game/              # Game pages
+│   └── globals.css        # Global styles
 ├── components/            # React components
 │   ├── core/             # Core game components
 │   ├── entities/         # Game entities (agents, structures, etc.)
-│   ├── landing/          # Landing page components
 │   ├── ui/               # UI components
-│   └── world/            # World/terrain components
+│   ├── world/            # World/terrain components
+│   ├── bridge/           # Bridge components
+│   └── landing/          # Landing page components
 ├── lib/                  # Utility libraries
-│   └── store/            # Zustand state management
+│   └── store/            # State management stores
+├── hooks/                # Custom React hooks
 ├── public/               # Static assets
-├── .gitignore            # Git ignore rules
-├── next.config.js        # Next.js configuration
-├── package.json          # Dependencies and scripts
-├── postcss.config.js     # PostCSS configuration
-├── tailwind.config.ts    # Tailwind CSS configuration
-├── tsconfig.json         # TypeScript configuration
-└── vercel.json           # Vercel deployment configuration
+├── package.json
+├── tsconfig.json
+├── tailwind.config.ts
+├── next.config.js
+└── .env.example
 ```
 
-## Key Configuration Files
+## Key Features
 
-### [`next.config.js`](next.config.js)
+- **3D Game Engine**: Built with Three.js and React Three Fiber
+- **AI Agents**: Deepagents integration for intelligent agent behavior
+- **Interactive World**: Dynamic terrain and entity interactions
+- **Modern UI**: Tailwind CSS for responsive design
+- **Type Safety**: Full TypeScript support
+- **Server-Side Rendering**: Next.js SSR capabilities for better performance and SEO
 
-- Configures Three.js transpilation for client-side rendering
-- Sets up webpack for handling GLSL shaders
-- Enables package import optimization
-- Configures SWC minification
+## Building for Production
 
-### [`package.json`](package.json)
+```bash
+cd agents-of-empires-nextjs
+pnpm build
+```
 
-- Defines all dependencies including Three.js ecosystem
-- Contains scripts for development, build, and deployment
-- Uses workspace protocol for deepagents dependency
+The optimized production build will be created in the `.next` directory.
 
-### [`vercel.json`](vercel.json)
+## Deployment
 
-- Configures Vercel deployment settings
-- Sets build commands and output directory
-- Defines security headers
-- Configures caching policies
+This project is configured for Vercel deployment:
+
+1. Push your code to GitHub
+2. Import the project in Vercel
+3. Configure environment variables
+4. Deploy
+
+Alternatively, you can deploy to any Node.js hosting platform by building the application and running `pnpm start`.
 
 ## Troubleshooting
 
-### Three.js Transpilation Issues
+### Common Issues
 
-If you encounter issues with Three.js modules:
-1. Ensure `transpilePackages` is set in [`next.config.js`](next.config.js)
-2. Check that webpack rules are properly configured
-3. Clear the `.next` directory and rebuild: `rm -rf .next && pnpm build`
-
-### Workspace Dependency Issues
-
-If the `deepagents` workspace dependency is not found:
-1. Ensure you're running commands from the monorepo root
-2. Run `pnpm install` from the root directory
-3. Check that `pnpm-workspace.yaml` includes the workspace
-
-### Build Failures
-
-If the build fails:
-1. Check TypeScript errors: `pnpm typecheck`
-2. Run linter: `pnpm lint`
-3. Clear cache: `rm -rf .next node_modules && pnpm install`
-
-## Performance Optimization
-
-The application includes several optimizations:
-- **SWC Minification**: Faster builds with SWC instead of Terser
-- **Package Import Optimization**: Optimizes imports for Three.js packages
-- **Static Asset Caching**: Long cache headers for static files
-- **Code Splitting**: Automatic code splitting by Next.js
+1. **Module not found errors**: Ensure you've run `pnpm install` from the root directory
+2. **TypeScript errors**: Run `pnpm typecheck` to identify type issues
+3. **Port already in use**: The dev server uses port 3000 by default. You can change this in `next.config.js` or stop the process using that port
 
 ## Contributing
 
-1. Follow the existing code style
-2. Run `pnpm lint` before committing
-3. Run `pnpm typecheck` to ensure type safety
-4. Test changes locally before pushing
+This is part of a larger monorepo project. Please follow the contribution guidelines for the main repository.
 
 ## License
 
-MIT
-
-## Support
-
-For issues or questions:
-- Check the main repository documentation
-- Review the original Vite app for reference
-- Contact the development team
+See the LICENSE file in the root directory.
